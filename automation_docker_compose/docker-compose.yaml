@@ -1,0 +1,32 @@
+version: '3'
+services:
+  rt-mbms-tx:
+    image: tximg
+    container_name: txc
+    build:
+      context: ./rt-mbms-tx
+      dockerfile: Dockerfile
+    privileged: true
+    cap_add:
+      - NET_ADMIN 
+    devices:
+      - /dev/net/tun 
+      - /dev/bus/usb:/dev/bus/usb 
+    volumes:
+      - ./sample_data:/tmp/samples
+
+  rt-mbms-tx-for-qrd-and-crd:
+    image: txqrdimg
+    container_name: txqrdc
+    build:
+      context: ./rt-mbms-tx-for-qrd-and-crd
+      dockerfile: Dockerfile
+    privileged: true
+    cap_add:
+      - NET_ADMIN 
+    devices:  
+      - /dev/net/tun 
+      - /dev/bus/usb:/dev/bus/usb 
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket

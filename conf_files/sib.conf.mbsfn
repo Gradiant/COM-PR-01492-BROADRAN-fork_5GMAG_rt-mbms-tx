@@ -205,5 +205,3 @@ sib13 =
         subcarrier_spacing = "khz1dot25";
     };
 };
-
-
